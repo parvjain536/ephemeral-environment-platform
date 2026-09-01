@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ephemeral-platform
-          image: ephemeral-platform:0.3.0
+          image: 920810905390.dkr.ecr.ap-south-1.amazonaws.com/ephemeral-platform:0.3.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000

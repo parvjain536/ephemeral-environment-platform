@@ -1,10 +1,25 @@
-.venv/
+# Python
 __pycache__/
+*.py[cod]
 .pytest_cache/
-*.pyc
+.venv/
+venv/
 
+# Environment files
 .env
 .env.*
 !.env.example
 
+# VS Code
 .vscode/
+
+# Terraform
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/*.tfvars
+terraform/*.tfvars.json
+
+# OS files
+.DS_Store
+Thumbs.db
