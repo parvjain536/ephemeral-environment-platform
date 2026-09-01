@@ -1,11 +1,10 @@
 # Python
-__pycache__/
-*.py[cod]
-.pytest_cache/
 .venv/
-venv/
+__pycache__/
+.pytest_cache/
+*.pyc
 
-# Environment files
+# Environment
 .env
 .env.*
 !.env.example
@@ -17,9 +16,16 @@ venv/
 terraform/.terraform/
 terraform/*.tfstate
 terraform/*.tfstate.*
-terraform/*.tfvars
-terraform/*.tfvars.json
+terraform/.terraform.tfstate.lock.info
 
-# OS files
+# Terraform crash logs
+crash.log
+crash.*.log
+
+# Terraform variable files
+*.tfvars
+*.tfvars.json
+
+# OS
 .DS_Store
 Thumbs.db
