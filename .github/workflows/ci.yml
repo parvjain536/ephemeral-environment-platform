@@ -73,8 +73,14 @@ jobs:
       - name: Deploy to EKS
         if: github.event_name == 'push'
         run: |
+          IMAGE="${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}"
+
+          kubectl annotate deployment/$K8S_DEPLOYMENT \
+            kubernetes.io/change-cause="GitHub Actions commit ${{ github.sha }}" \
+            --overwrite
+
           kubectl set image deployment/$K8S_DEPLOYMENT \
-            $K8S_CONTAINER=${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
+            $K8S_CONTAINER=$IMAGE
 
       - name: Wait for rollout
         if: github.event_name == 'push'
