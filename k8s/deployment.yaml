@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ephemeral-platform
+
 spec:
   replicas: 2
 
@@ -23,12 +24,16 @@ spec:
     spec:
       securityContext:
         runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
         seccompProfile:
           type: RuntimeDefault
 
       containers:
         - name: ephemeral-platform
-          image: 920810905390.dkr.ecr.ap-south-1.amazonaws.com/ephemeral-platform:0.3.0
+
+          image: 920810905390.dkr.ecr.ap-south-1.amazonaws.com/ephemeral-platform:0.4.0
           imagePullPolicy: IfNotPresent
 
           ports:
