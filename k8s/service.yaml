@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: ephemeral-platform
 spec:
+  type: LoadBalancer
   selector:
     app: ephemeral-platform
   ports:
     - protocol: TCP
       port: 80
       targetPort: 8000
-  type: ClusterIP
