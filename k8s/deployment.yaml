@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ephemeral-platform
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ephemeral-platform
+  template:
+    metadata:
+      labels:
+        app: ephemeral-platform
+    spec:
+      containers:
+        - name: ephemeral-platform
+          image: ephemeral-platform:0.3.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
